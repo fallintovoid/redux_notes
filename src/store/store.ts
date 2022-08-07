@@ -1,10 +1,11 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { reducer as folderReducer } from './slices/folderSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    folder: folderReducer
   },
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
 export type AppDispatch = typeof store.dispatch;

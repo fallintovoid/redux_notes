@@ -1,0 +1,17 @@
+.text {
+    display: flex;
+    padding: 15px;
+    width: 500px;
+    font-size: 30px;
+    word-wrap: break-word;
+    &_edit {
+        width: 100%;
+    }
+}
+textarea {
+    background: transparent;
+    width: 90%;
+    min-height: 500px;
+    outline: none;
+    border: none;
+}
