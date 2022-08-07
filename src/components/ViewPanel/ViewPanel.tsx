@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, memo } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks'
 import NoteRender from './NoteRender/NoteRender'
 import s from './ViewPanel.module.scss'
@@ -21,6 +21,12 @@ const ViewPanel = (props: Props) => {
             }))
         }
     }, [mode])
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && mode === true) {
+            dispatch(setChangingMode(false))
+        }
+    })
 
     useEffect(() => {
         setInputName(viewPanel.name)
