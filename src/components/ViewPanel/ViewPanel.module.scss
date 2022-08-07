@@ -21,7 +21,6 @@
         overflow: hidden;
         main {
             width: 100%;
-            padding: 15px 15px 15px 15px;
         }
         
         .title {
@@ -38,10 +37,13 @@
             font-weight: 400;
             input {
                 width: 250px;
-                height: 40px;
+                min-height: 40px;
                 background: transparent;
-                outline: none;
+                outline: 1px solid rgb(208, 208, 208);
+                border-radius: 5px;
                 border: none;
+                font-size: 25px;
+                font-weight: 400;
             }
             &_name {
                 font-size: 25px;

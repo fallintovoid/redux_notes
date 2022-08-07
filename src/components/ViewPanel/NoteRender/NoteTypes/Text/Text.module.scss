@@ -1,17 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
 .text {
     display: flex;
     padding: 15px;
-    width: 500px;
+    width: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
     font-size: 30px;
     word-wrap: break-word;
+    white-space: pre-wrap;
     &_edit {
         width: 100%;
     }
 }
 textarea {
     background: transparent;
-    width: 90%;
+    max-width: 98%;
     min-height: 500px;
-    outline: none;
+    outline: 1px solid rgb(208, 208, 208);
     border: none;
+    font-size: 30px;
+    padding: 15px;
+    font-family: 'Poppins', sans-serif;
 }
