@@ -28,14 +28,17 @@ const Text = ({text, idText}: Props) => {
       <textarea 
         value={areaValue} 
         className={s.text_edit}
+        placeholder='Write something here...'
         onChange={(e) => setAreaValue(e.target.value)}/>
     )
-  } else {
+  } else if (mode === false && areaValue){
     return (
       <div className={s.text}>
         {areaValue}
       </div>
     )
+  } else {
+    return null
   }
   
 }

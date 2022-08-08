@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { idText } from "typescript";
 
 interface InitialState {
     folder: any[],
@@ -52,6 +51,8 @@ function findById(acc: any, el: any, id: number | string) {
     return acc;
 }
 
+
+
 const folderSlice = createSlice({
     name: 'folder',
     initialState,
@@ -60,12 +61,12 @@ const folderSlice = createSlice({
             state.viewPanel = action.payload
         },
         addItem: (state, action) => {
-            state.folder.reduce((acc, el) => findById(acc, el, action.payload.id), null).contains.push(action.payload.obj)
+            state.folder.reduce((acc: any, el: any) => findById(acc, el, action.payload.id), null).contains.push(action.payload.obj)
         },
         setName: (state, action) => {
             const typedAction: SetNameAction = action
             
-            const foundedItem = state.folder.reduce((acc, el) => findById(acc, el, typedAction.payload.id), null)
+            const foundedItem = state.folder.reduce((acc: any, el: any) => findById(acc, el, typedAction.payload.id), null)
             foundedItem.name = typedAction.payload.newName
             if (foundedItem.type !== 'folder') {
                 state.viewPanel.name = typedAction.payload.newName
@@ -77,9 +78,15 @@ const folderSlice = createSlice({
         setText: (state, action) => {
             const typedAction: SetTextAction = action
 
-            const foundText = state.folder.reduce((acc, el) => findById(acc, el, typedAction.payload.idText), null)
+            const foundText = state.folder.reduce((acc: any, el:any) => findById(acc, el, typedAction.payload.idText), null)
             foundText.text = typedAction.payload.text
             state.viewPanel.contains.find((item: any) => item.id === typedAction.payload.idText).text = typedAction.payload.text
+        },
+        addItemNote: (state, action) => {
+            const foundNote = state.folder.reduce((acc: any, el:any) => findById(acc, el, action.payload.id), null)
+
+            foundNote.contains.push(action.payload.newItem)
+            state.viewPanel.contains.push(action.payload.newItem)
         }
     }
 })
@@ -91,5 +98,6 @@ export const {
     addItem,
     setName,
     setChangingMode,
-    setText
+    setText,
+    addItemNote
 } = actions

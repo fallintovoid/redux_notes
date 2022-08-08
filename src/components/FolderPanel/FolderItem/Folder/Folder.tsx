@@ -31,7 +31,7 @@ const Folder = ({multi, name, id}: Props) => {
             contains: [
                 {
                     type: 'text',
-                    text: 'Hi',
+                    text: '',
                     id: uuidv4()
                 }
             ],

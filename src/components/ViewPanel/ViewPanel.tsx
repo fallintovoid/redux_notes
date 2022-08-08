@@ -1,9 +1,12 @@
-import React, { useEffect, useState, memo } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks'
 import NoteRender from './NoteRender/NoteRender'
 import s from './ViewPanel.module.scss'
-import { setName, setChangingMode } from '../../store/slices/folderSlice'
+import { setName, setChangingMode, addItemNote } from '../../store/slices/folderSlice'
 import { BsFillPencilFill } from 'react-icons/bs'
+import { AiOutlinePlusCircle } from 'react-icons/ai'
+
+import { v4 as uuidv4 } from 'uuid'
 
 type Props = {}
 
@@ -36,6 +39,7 @@ const ViewPanel = (props: Props) => {
         if (mode) {
             return <input
                 value={name}
+                autoFocus
                 onChange={(e) => setInputName(e.target.value)}/>
         } else {
             return !viewPanel.id ? 
@@ -46,6 +50,22 @@ const ViewPanel = (props: Props) => {
         }
     }
 
+    const addItemHandler = (id: string | number) => {
+        const newItem = {
+            type: 'text',
+            text: '',
+            id: uuidv4()
+        }
+        dispatch(addItemNote({id, newItem}))
+    }
+
+    const plusMode = mode ? 
+        <AiOutlinePlusCircle
+            size='50px'
+            className={s.plus}
+            onClick={() => addItemHandler(viewPanel.id)}/> :
+        null
+
     return (
         <div className={s.view_panel}>
             <div className={s.container}>
@@ -54,12 +74,13 @@ const ViewPanel = (props: Props) => {
                     <BsFillPencilFill   
                         className={s.edit}
                         size='20px'
-                        color={mode ? '#E400FF' : undefined}
+                        color={mode ? '#BDFD44' : 'white'}
                         onClick={() => dispatch(setChangingMode(!mode))}/>
                 </div>
                 <main>
                     <NoteRender 
                         items={viewPanel.contains}/>
+                    {plusMode}
                 </main>
             </div>
         </div>
